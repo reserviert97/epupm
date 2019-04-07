@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-    <div class="col-12">
+    <div class="col-10 mx-auto">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Invoices</h3>
+                <h3 class="card-title">Daftar Penjual</h3>
                 <div class="card-options">
-                    <a href="{{ route('beli.create') }}" class="btn btn-primary">Pembelian Baru</a>
+                    <a href="{{ route('penjual.create') }}" class="btn btn-primary">Tambah Penjual</a>
                 </div>
             </div>
                   
@@ -15,14 +15,9 @@
                 <table class="table card-table table-vcenter text-nowrap">
                     <thead>
                         <tr>
-                            <th class="w-1">No.</th>
-                            <th>Tanggal</th>
-                            <th>Keterangan</th>
-                            <th>Penjual</th>
-                            <th>Volume</th>
-                            <th>Satuan</th>
-                            <th>Harga</th>
-                            <th>Total</th>
+                            <th class="text-center">No.</th>
+                            <th>Nama</th>
+                            <th>Alamat</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -30,16 +25,11 @@
 
                         @foreach ($data as $item)
                             <tr>
-                                <td><span class="text-muted">001401</span></td>
-                                <td>{{ $item->created_at }}</td>
-                                <td><a href="invoice.html" class="text-inherit">{{ $item->keterangan }}</a></td>
-                                <td>{{ $item->penjual }}</td>
-                                <td>{{ $item->volume }} Kg</td>
-                                <td>{{ $item->satuan }}</td>
-                                <td>Rp. {{ $item->harga }}</td>
-                                <td>Rp. {{ $item->total }}</td>
+                                <td class="text-center"><span class="text-muted">{{ $item->id }}</span></td>
+                                <td><a href="invoice.html" class="text-inherit">{{ $item->nama }}</a></td>
+                                <td>{{ $item->alamat }}</td>
                                 <td>
-                                    <form action="{{ route('beli.destroy', $item->id ) }}" method="post">
+                                    <form action="{{ route('penjual.destroy', $item->id ) }}" method="post">
                                     @csrf @method('delete')
                                         <button class="btn btn-danger btn-sm mr-1">delete</button>
                                     
