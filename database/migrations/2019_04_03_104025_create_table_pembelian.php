@@ -11,10 +11,18 @@ class CreateTablePembelian extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
-        Schema::table('pembelian', function (Blueprint $table) {
-            //
+        Schema::create('pembelian', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('keterangan');
+            $table->string('penjual');
+            $table->bigInteger('volume');
+            $table->string('satuan');
+            $table->bigInteger('harga');
+            $table->bigInteger('total');
+            $table->timestamps();
         });
     }
 

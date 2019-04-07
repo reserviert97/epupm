@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pembelian;
 
 class PembelianController extends Controller
 {
@@ -13,7 +14,8 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        return view('pembelian.index');
+        $data = Pembelian::all();
+        return view('pembelian.index', compact('data'));
     }
 
     /**
@@ -23,7 +25,7 @@ class PembelianController extends Controller
      */
     public function create()
     {
-        //
+        return view('pembelian.create');
     }
 
     /**
@@ -34,7 +36,15 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pembelian = Pembelian::create([
+            'keterangan' => $request->keterangan,
+            'penjual' => $request->penjual,
+            'volume' => $request->volume,
+            'satuan' => $request->satuan,
+            'harga' => $request->harga,
+            'total' => $request->harga * $request->volume
+        ]);
+        return redirect()->route('beli.index');
     }
 
     /**
@@ -54,9 +64,9 @@ class PembelianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pembelian $beli)
     {
-        //
+        return view('pembelian.edit', compact('beli'));
     }
 
     /**
@@ -68,7 +78,9 @@ class PembelianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pembelian = Pembelian::find($id);
+        $pembelian->update($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +91,8 @@ class PembelianController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pembelian = Pembelian::find($id);
+        $pembelian->delete();
+        return redirect()->route('beli.index');
     }
 }
