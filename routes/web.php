@@ -24,6 +24,17 @@ Route::prefix('penjual')->group(function (){
     Route::get('/create', 'PenjualController@create')->name('penjual.create');
 });
 
+Route::prefix('kirim')->group(function (){
+    Route::get('/', 'JualController@index')->name('jual.index');
+    Route::post('/', 'JualController@store')->name('jual.store');
+    Route::get('/create', 'JualController@create')->name('jual.create');
+    Route::delete('/{pengiriman}', 'JualController@destroy')->name('jual.destroy');
+});
+
+Route::prefix('toko')->group(function() {
+    Route::get('/', 'TokoController@index')->name('toko.index');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

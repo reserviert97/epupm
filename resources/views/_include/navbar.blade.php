@@ -98,6 +98,12 @@
                     <li class="nav-item">
                         <a href="{{ route('penjual.index') }}" class="nav-link">Penjual</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jual.index') }}" class="nav-link">Pengiriman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('toko.index') }}" class="nav-link">Toko</a>
+                    </li>
                 </ul>
             </div>
         </div>
