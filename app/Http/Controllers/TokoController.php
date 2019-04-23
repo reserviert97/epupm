@@ -14,7 +14,8 @@ class TokoController extends Controller
      */
     public function index()
     {
-        return "bla";
+        $data = Toko::all();
+        return view('toko.index', compact('data'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TokoController extends Controller
      */
     public function create()
     {
-        //
+        return view('toko.create');
     }
 
     /**
@@ -35,7 +36,11 @@ class TokoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Toko::insert([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat
+        ]);
+        return redirect()->route('toko.index');
     }
 
     /**
@@ -80,6 +85,7 @@ class TokoController extends Controller
      */
     public function destroy(Toko $toko)
     {
-        //
+        $toko->delete();
+        return redirect()->route('toko.index');
     }
 }

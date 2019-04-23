@@ -11,7 +11,7 @@ class PengirimanTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pengirimen')->insert([
+        DB::table('pengiriman')->insert([
             [
                 'toko' => 'TTI Nur',
                 'volume' => 2500,

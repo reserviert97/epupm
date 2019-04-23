@@ -93,13 +93,16 @@
             <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                     <li class="nav-item">
-                        <a href="{{ route('beli.index') }}" class="nav-link">Beli</a>
+                        <a href="{{ route('beli.index') }}" class="nav-link">Pembelian</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('penjual.index') }}" class="nav-link">Penjual</a>
+                        <a href="{{ route('operasional.index') }}" class="nav-link">Operasional</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('jual.index') }}" class="nav-link">Pengiriman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('penjual.index') }}" class="nav-link">Penjual</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('toko.index') }}" class="nav-link">Toko</a>
