@@ -4,28 +4,23 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablePembelian extends Migration
+class CreatePengirimanTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    
     public function up()
     {
-        Schema::create('pembelian', function (Blueprint $table) {
+        Schema::create('pengiriman', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_penjual');
-            $table->string('keterangan');
+            $table->unsignedBigInteger('id_toko');
             $table->bigInteger('volume');
-            $table->string('satuan');
             $table->bigInteger('harga');
             $table->bigInteger('total');
             $table->timestamps();
         });
-
-        
     }
 
     /**
@@ -35,8 +30,6 @@ class CreateTablePembelian extends Migration
      */
     public function down()
     {
-        Schema::table('pembelian', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('pengiriman');
     }
 }

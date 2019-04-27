@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableOperational extends Migration
+class CreateTableSortir extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTableOperational extends Migration
      */
     public function up()
     {
-        Schema::create('Operational', function (Blueprint $table) {
+        Schema::create('sortir', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('item');
+            $table->unsignedBigInteger('operasional_id');
             $table->bigInteger('harga');
             $table->bigInteger('volume');
-            $table->bigInteger('total');
-            $table->string('Keterangan');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateTableOperational extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Operational');
+        Schema::dropIfExists('sortir');
     }
 }

@@ -22,7 +22,6 @@
                             <th class="w-1">No.</th>
                             <th>Tanggal</th>
                             <th>Item</th>
-                            <th>Harga</th>
                             <th>Volume</th>
                             <th>Total</th>
                             <th>Keterangan</th>
@@ -34,10 +33,31 @@
                             <tr>
                                 <td><span class="text-muted">001401</span></td>
                                 <td>{{ $item->created_at }}</td>
-                                <td>{{ $item->item }}</td>
-                                <td>Rp. {{ $item->harga }}</td>
-                                <td>{{ $item->volume }} Kg</td>
-                                <td>Rp. {{ $item->total }}</td>
+                                <td>{{ $item->jenis_item }}</td>
+                                
+                                @if ($item->jenis_item == 'Giling')
+                                    <td>{{ $item->giling->volume_gkg }} Kg</td>
+                                    <td>Rp. {{ $item->giling->total }}</td>
+
+                                @elseif ($item->jenis_item == 'Plastik')
+                                    <td>{{ $item->plastik->volume }} Kg</td>
+                                    <td>Rp. {{ $item->plastik->harga }}</td>
+
+                                @elseif ($item->jenis_item == 'Bongkar Muat')
+                                    <td>{{ $item->bongkarMuat->volume }} Kg</td>
+                                    <td>Rp. {{ $item->bongkarMuat->harga }}</td>
+                                
+                                @elseif ($item->jenis_item == 'Sortir')
+                                    <td>{{ $item->sortir->volume }} Kg</td>
+                                    <td>Rp. {{ $item->sortir->harga }}</td>
+
+                                @elseif ($item->jenis_item == 'Transport')
+                                    <td>{{ $item->transport->volume }} Kg</td>
+                                    <td>Rp. {{ $item->transport->harga }}</td>
+
+                                @endif
+
+                                
                                 <td>
                                     {{-- <form action="{{ route('jual.destroy', $item->id ) }}" method="post">
                                     @csrf @method('delete')

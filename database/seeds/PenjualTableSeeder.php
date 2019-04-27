@@ -24,6 +24,14 @@ class PenjualTableSeeder extends Seeder
                 'nama' => 'Badrun',
                 'alamat' => 'Karangjunti',
             ],
+            [
+                'nama' => 'H. Yahya',
+                'alamat' => 'Lombok',
+            ],
+            [
+                'nama' => 'Tarno',
+                'alamat' => 'Mayag',
+            ],
 
         ]);
     }

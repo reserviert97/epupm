@@ -24,7 +24,14 @@ class TokoTableSeeder extends Seeder
                 'nama' => 'TTI Rustiah',
                 'alamat' => 'Mayag',
             ],
-
+            [
+                'nama' => 'TTI Karangjunti',
+                'alamat' => 'Karangjunti',
+            ],
+            [
+                'nama' => 'TTI Ciledug',
+                'alamat' => 'Ciledug',
+            ],
         ]);
     }
 }

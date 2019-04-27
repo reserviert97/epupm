@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Operasional;
+use App\Transport;
 
 class OperasionalController extends Controller
 {
     public function index()
     {
         $data = Operasional::all();
+
+        // $satu = Operasional::find(2);
+        // dd($satu->bongkarMuat->harga);
         return view('operasional.index', compact('data'));
     }
 
@@ -35,14 +39,19 @@ class OperasionalController extends Controller
 
     public function store(Request $request)
     {
-        Operasional::insert([
-            'item' => $request->item,
-            'harga' => $request->harga,
-            'volume' => $request->volume,
-            'total' => $request->harga * $request->volume,
-            'Keterangan' => '',
+        $operasional = Operasional::create([
+            'jenis_item' => $request->item,
             'created_at' => now(),
         ]);
+
+        Transport::insert([
+            'harga' => $request->harga * $request->volume,
+            'volume' => $request->volume,
+            'operasional_id' => $operasional->id,
+            'id_pembelian' => 2,
+            'created_at' => now(),
+        ]);
+
         return redirect()->route('operasional.index');
     }
 }
