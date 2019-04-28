@@ -51,7 +51,7 @@ class TokoController extends Controller
      */
     public function show(Toko $toko)
     {
-        //
+        return view('toko.show')->withData($toko);
     }
 
     /**
@@ -86,6 +86,7 @@ class TokoController extends Controller
     public function destroy(Toko $toko)
     {
         $toko->delete();
-        return redirect()->route('toko.index');
+        session()->flash('success', 'Data berhasil dihapus');
+        return redirect()->back();
     }
 }

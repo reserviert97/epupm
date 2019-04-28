@@ -5,10 +5,10 @@
 <div class="container">
     <div class="page-header">
         <h1 class="page-title">Daftar Penjual</h1>
-        <div class="page-subtitle">Total : 713 Penjual</div>
+        <div class="page-subtitle">Total : {{ count($data) }} Penjual</div>
 
         <div class="page-options d-flex">
-            <a href="{{ route('penjual.create') }}" class="btn btn-warning"><i class="fe fe-plus mr-2"></i>Tambah Penjual</a>
+            <a href="{{ route('penjual.create') }}" class="btn btn-secondary"><i class="fe fe-user-plus mr-2"></i>Tambah</a>
             <div class="input-icon ml-2">
                 <span class="input-icon-addon">
                 <i class="fe fe-search"></i>
@@ -18,12 +18,7 @@
         </div>
     </div>
 
-    @if (session()->has('success'))
-        <div class="alert alert-success alert-dismissible">
-            <button data-dismiss="alert" class="close"></button>
-            <i class="fe fe-check mr-2" aria-hidden="true"></i> {{ session('success') }}
-        </div>
-    @endif
+    @include('_include.alert')
     
 
     <div class="row row-cards">

@@ -34,6 +34,7 @@ Route::prefix('kirim')->group(function (){
 
 Route::prefix('toko')->group(function() {
     Route::get('/', 'TokoController@index')->name('toko.index');
+    Route::get('/{toko}', 'TokoController@show')->name('toko.show');
     Route::get('/create', 'TokoController@create')->name('toko.create');
     Route::post('/', 'TokoController@store')->name('toko.store');
     Route::delete('/{toko}', 'TokoController@destroy')->name('toko.destroy');
