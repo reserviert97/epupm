@@ -19,6 +19,7 @@ Route::resource('beli', 'PembelianController');
 
 Route::prefix('penjual')->group(function (){
     Route::get('/', 'PenjualController@index')->name('penjual.index');
+    Route::get('/{penjual}', 'PenjualController@show')->name('penjual.show');
     Route::post('/', 'PenjualController@store')->name('penjual.store');
     Route::delete('/{penjual}', 'PenjualController@delete')->name('penjual.destroy');
     Route::get('/create', 'PenjualController@create')->name('penjual.create');

@@ -16,6 +16,8 @@ class PenjualController extends Controller
     public function delete(Penjual $penjual)
     {
         $penjual->delete();
+        session()->flash('success', 'Data berhasil dihapus');
+        
         return redirect()->back();
     }
 
@@ -31,5 +33,10 @@ class PenjualController extends Controller
             'alamat' => $request->alamat,
         ]);
         return redirect()->route('penjual.index');
+    }
+
+    public function show(Penjual $penjual)
+    {
+        return view('penjual.show')->withData($penjual);
     }
 }
