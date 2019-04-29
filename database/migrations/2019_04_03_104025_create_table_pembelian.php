@@ -16,7 +16,8 @@ class CreateTablePembelian extends Migration
     {
         Schema::create('pembelian', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_penjual');
+            $table->string('no')->unique();
+            $table->unsignedBigInteger('penjual_id');
             $table->string('keterangan');
             $table->bigInteger('volume');
             $table->string('satuan');
@@ -35,8 +36,6 @@ class CreateTablePembelian extends Migration
      */
     public function down()
     {
-        Schema::table('pembelian', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('pembelian');
     }
 }

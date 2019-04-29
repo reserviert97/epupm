@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="card card-profile">
-                <div class="card-header" style="background-image: url(/demo/photos/eberhard-grossgasteiger-311213-500.jpg);"></div>
+                <div class="card-header" style="background-image: url(/demo/photos/ilnur-kalimullin-218996-500.jpg);"></div>
                 <div class="card-body text-center">
-                  <img class="card-profile-img" src="/demo/faces/male/16.jpg">
+                  <img class="card-profile-img" src="/demo/faces/male/18.jpg">
                   <h3 class="mb-3">{{ $data->nama }}</h3>
                   <p class="mb-4 text-muted">
                     {{ $data->alamat }}
@@ -28,7 +28,7 @@
                           <i class="fa fa-pagelines"></i>
                         </span>
                         <div>
-                          <h4 class="m-0"><a href="javascript:void(0)">7000 <small>Kg</small></a></h4>
+                          <h4 class="m-0"><a href="javascript:void(0)">{{ $data->pembelian->sum('volume') }} <small>Kg</small></a></h4>
                           <small class="text-muted">Total Padi</small>
                         </div>
                       </div>
@@ -42,7 +42,7 @@
                           <i class="fa fa-dollar"></i>
                         </span>
                         <div>
-                          <h4 class="m-0"><a href="javascript:void(0)"> 12.000.000 </a></h4>
+                          <h4 class="m-0"><a href="javascript:void(0)">{{ number_format($data->pembelian->sum('total')) }}</a></h4>
                           <small class="text-muted">Total Uang</small>
                         </div>
                       </div>
@@ -56,7 +56,7 @@
                           <i class="fe fe-shopping-cart"></i>
                         </span>
                         <div>
-                          <h4 class="m-0"><a href="javascript:void(0)">78</a></h4>
+                          <h4 class="m-0"><a href="javascript:void(0)">{{ $data->pembelian->count() }}</a></h4>
                           <small class="text-muted">Transaksi</small>
                         </div>
                       </div>
@@ -78,54 +78,29 @@
                                 <th class="w-1">No.</th>
                                 <th>Tanggal</th>
                                 <th>Volume</th>
-                                <th>Satuan</th>
                                 <th>Harga</th>
-                                <th>Total</th>
+                                <th class="w-1"></th>
+                                <th class="text-center">Total</th>
                                 <th></th>
                               </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><span class="text-muted">001401</span></td>
-                                    <td>29 April 2019</td>
-                                    <td>900 Kg</td>
-                                    <td>GKG</td>
-                                    <td>Rp. 5000</td>
-                                    <td>Rp. 4.500.000</td>
-                                    <td>
-                                        <a class="icon" href="javascript:void(0)">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><span class="text-muted">001401</span></td>
-                                    <td>29 April 2019</td>
-                                    <td>900 Kg</td>
-                                    <td>GKG</td>
-                                    <td>Rp. 5000</td>
-                                    <td>Rp. 4.500.000</td>
-                                    <td>
-                                        <a class="icon" href="javascript:void(0)">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><span class="text-muted">001401</span></td>
-                                    <td>29 April 2019</td>
-                                    <td>900 Kg</td>
-                                    <td>GKG</td>
-                                    <td>Rp. 5000</td>
-                                    <td>Rp. 4.500.000</td>
-                                    <td>
-                                        <a class="icon" href="javascript:void(0)">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($data->pembelian as $item)
+                                    <tr>
+                                        <td><span class="text-muted">{{ $item->no }}</span></td>
+                                        <td>{{ $item->created_at->format('d-M-Y') }}</td>
+                                        <td>{{ $item->volume }} Kg</td>
+                                        <td>Rp. {{ number_format($item->harga) }}</td>
+                                        <td class="pl-5 pr-0">Rp. </td>
+                                        <td class="text-right pl-0 pr-5">{{ number_format($item->total) }}</td>
+                                        <td>
+                                            <a class="icon" href="javascript:void(0)">
+                                                <i class="fe fe-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                
 
                             </tbody>
                           </table>

@@ -51,7 +51,7 @@ class OperasionalController extends Controller
             'id_pembelian' => 2,
             'created_at' => now(),
         ]);
-
+        
         return redirect()->route('operasional.index');
     }
 }

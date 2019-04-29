@@ -14,15 +14,13 @@ class AddRelationToPembelian extends Migration
     public function up()
     {
         Schema::table('pembelian', function (Blueprint $table) {
-            $table->foreign('id_penjual')
-                  ->references('id')->on('penjual')
-                  ->onDelete('cascade');
+            $table->foreign('penjual_id')
+                  ->references('id')->on('penjual');
         });
         
         Schema::table('pengiriman', function (Blueprint $table) {
             $table->foreign('id_toko')
-                  ->references('id')->on('toko')
-                  ->onDelete('cascade');
+                  ->references('id')->on('toko');
         });
     }
 

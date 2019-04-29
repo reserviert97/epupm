@@ -14,7 +14,7 @@ class PembelianTableSeeder extends Seeder
         DB::table('pembelian')->insert([
             [
                 'keterangan' => 'Pembelian Gabah',
-                'id_penjual' => rand(1,5),
+                'penjual_id' => rand(16,20),
                 'volume' => 2000,
                 'satuan' => 'GKG',
                 'harga' => 5100,
@@ -22,7 +22,7 @@ class PembelianTableSeeder extends Seeder
             ],
             [
                 'keterangan' => 'Pembelian Gabah',
-                'id_penjual' => rand(1,5),
+                'penjual_id' => rand(16,20),
                 'volume' => 1000,
                 'satuan' => 'GKG',
                 'harga' => 5000,
@@ -30,7 +30,7 @@ class PembelianTableSeeder extends Seeder
             ],
             [
                 'keterangan' => 'Pembelian Gabah',
-                'id_penjual' => rand(1,5),
+                'penjual_id' => rand(16,20),
                 'volume' => 1500,
                 'satuan' => 'GKG',
                 'harga' => 5200,

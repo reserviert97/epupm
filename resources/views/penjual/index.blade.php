@@ -25,7 +25,8 @@
         @foreach ($data as $item)
             <div class="col-6 col-sm-4 col-lg-2 pt-5">
                 <div class="card pt-3">
-                    <div class="card-body p-3 text-center">
+                    <div class="card-body pb-2 pt-2 text-center">
+                    <span class="h1 avatar avatar-xl avatar-cyan">{{ substr($item->nama,0,1) }}</span>
                     <div class="h4 m-0">{{ $item->nama }}</div>
                         <div class="text-muted mb-4">{{ $item->alamat }}</div>
                         

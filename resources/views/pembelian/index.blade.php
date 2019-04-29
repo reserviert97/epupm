@@ -2,12 +2,13 @@
 
 @section('content')
 <div class="container">
+    @include('_include.alert')
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Invoices</h3>
+                <h3 class="card-title">Daftar Pembelian</h3>
                 <div class="card-options">
-                    <a href="{{ route('beli.create') }}" class="btn btn-primary">Pembelian Baru</a>
+                    <a href="{{ route('beli.create') }}" class="btn btn-primary"><i class="fe fe-plus-circle mr-1"></i>Tambah</a>
                 </div>
             </div>
                   
@@ -15,14 +16,15 @@
                 <table class="table card-table table-vcenter text-nowrap">
                     <thead>
                         <tr>
-                            <th class="w-1">No.</th>
-                            <th>Tanggal</th>
-                            <th>Keterangan</th>
-                            <th>Penjual</th>
-                            <th>Volume</th>
-                            <th>Satuan</th>
-                            <th>Harga</th>
-                            <th>Total</th>
+                            <th class="w-5">No.</th>
+                            <th class="text-center">Tanggal</th>
+                            <th class="w-1"></th>
+                            <th class="">Penjual</th>
+                            <td class="w-1"></td>
+                            <th class="">Volume</th>
+                            <th class="">Harga</th>
+                            <th class="w-1"></th>
+                            <th class="text-center w-5">Total</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -30,23 +32,28 @@
 
                         @foreach ($data as $item)
                             <tr>
-                                <td><span class="text-muted">001401</span></td>
-                                <td>{{ $item->created_at }}</td>
-                                <td><a href="invoice.html" class="text-inherit">{{ $item->keterangan }}</a></td>
-                                <td>{{ $item->penjual }}</td>
-                                <td>{{ $item->volume }} Kg</td>
-                                <td>{{ $item->satuan }}</td>
-                                <td>Rp. {{ $item->harga }}</td>
-                                <td>Rp. {{ $item->total }}</td>
+                                <td><a href="{{ route('beli.edit', $item->id) }}" class="text-secondary">{{ $item->no }}</a></td>
+                                <td class="text-center">{{ $item->created_at->format('d-M-Y') }}</td>
+                                <td class="w-1 pr-0">
+                                    <span class="ml-5 avatar">{{ substr($item->penjual->nama,0,1) }}</span>
+                                </td>
                                 <td>
-                                    <form action="{{ route('beli.destroy', $item->id ) }}" method="post">
-                                    @csrf @method('delete')
-                                        <button class="btn btn-danger btn-sm mr-1">delete</button>
-                                    
+                                    <a href="{{ route('penjual.show', $item->penjual_id) }}" class="text-dark">{{ $item->penjual->nama }}</a>
+                                </td>
+                                <td class="w-1 pr-0"><span class="ml-4 status-icon bg-primary"></span></td>
+                                <td>{{ $item->volume }} Kg</td>
+                                <td>
+                                    <span class="text-left">Rp.</span> 
+                                    <span class="text-right">{{ number_format($item->harga) }}</span>
+                                </td>
+                                <td><span class="text-left">Rp.</span></td>
+                                <td class="text-right">
+                                    <span class="text-right">{{ number_format($item->total) }}</span>
+                                </td>
+                                <td>
                                     <a class="icon" href="{{ route('beli.edit', $item->id) }}">
-                                        <i class="fe fe-edit"></i>
+                                        <i class="fa fa-pencil-square"></i>
                                     </a>
-                                    </form>
                                 </td>
                             </tr>
                         @endforeach

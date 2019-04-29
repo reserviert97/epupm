@@ -28,8 +28,6 @@ class CreateTableToko extends Migration
      */
     public function down()
     {
-        Schema::table('toko', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('toko');
     }
 }
