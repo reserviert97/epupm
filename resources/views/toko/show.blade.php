@@ -17,7 +17,7 @@
                             </div>
                             <div class="col text-right">
                                 <div class="small text-muted">Total Transaksi</div>
-                                <div class="h4 m-0">50</div>
+                                <div class="h4 m-0">{{ $data->pengiriman->count() }}</div>
                             </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="col text-right">
                                 <div class="small text-muted">Total Uang</div>
-                                <div class="h4 m-0">120.000.000</div>
+                                <div class="h4 m-0">{{ number_format($data->pengiriman->sum('total')) }}</div>
                             </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col text-right">
                                 <div class="small text-muted">Total Volume</div>
-                                <div class="h4 m-0">5000 Kg</div>
+                                <div class="h4 m-0">{{ $data->pengiriman->sum('volume') }} Kg</div>
                             </div>
                             </div>
                         </div>
@@ -76,49 +76,28 @@
                                 <th>Tanggal</th>
                                 <th>Volume</th>
                                 <th>Harga</th>
-                                <th>Total</th>
+                                <th class="w-1"></th>
+                                <th class="text-center">Total</th>
                                 <th></th>
                               </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><span class="text-muted">001401</span></td>
-                                    <td>29 April 2019</td>
-                                    <td>900 Kg</td>
-                                    <td>Rp. 5000</td>
-                                    <td>Rp. 4.500.000</td>
-                                    <td>
-                                        <a class="icon" href="javascript:void(0)">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><span class="text-muted">001401</span></td>
-                                    <td>29 April 2019</td>
-                                    <td>900 Kg</td>
-                                    <td>Rp. 5000</td>
-                                    <td>Rp. 4.500.000</td>
-                                    <td>
-                                        <a class="icon" href="javascript:void(0)">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><span class="text-muted">001401</span></td>
-                                    <td>29 April 2019</td>
-                                    <td>900 Kg</td>
-                                    <td>Rp. 5000</td>
-                                    <td>Rp. 4.500.000</td>
-                                    <td>
-                                        <a class="icon" href="javascript:void(0)">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($data->pengiriman as $item)
+                                    <tr>
+                                        <td><span class="text-muted">{{ $item->no_kirim }}</span></td>
+                                        <td>{{ $item->created_at->format('d-M-Y') }}</td>
+                                        <td>{{ $item->volume }} Kg</td>
+                                        <td>Rp. {{ number_format($item->harga) }}</td>
+                                        <td class="pl-5 pr-0">Rp. </td>
+                                        <td class="text-right pl-0 pr-5">{{ number_format($item->total) }}</td>
+                                        <td>
+                                            <a class="icon" href="javascript:void(0)">
+                                                <i class="fe fe-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                
 
                             </tbody>
                           </table>

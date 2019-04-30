@@ -29,7 +29,9 @@ Route::prefix('kirim')->group(function (){
     Route::get('/', 'JualController@index')->name('jual.index');
     Route::post('/', 'JualController@store')->name('jual.store');
     Route::get('/create', 'JualController@create')->name('jual.create');
+    Route::get('/{pengiriman}/edit', 'JualController@edit')->name('jual.edit');
     Route::delete('/{pengiriman}', 'JualController@destroy')->name('jual.destroy');
+    Route::put('/{pengiriman}', 'JualController@update')->name('jual.update');
 });
 
 Route::prefix('toko')->group(function() {

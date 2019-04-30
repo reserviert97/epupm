@@ -15,7 +15,8 @@ class CreatePengirimanTable extends Migration
     {
         Schema::create('pengiriman', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_toko');
+            $table->string('no_kirim')->unique();
+            $table->unsignedBigInteger('toko_id');
             $table->bigInteger('volume');
             $table->bigInteger('harga');
             $table->bigInteger('total');

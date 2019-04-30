@@ -13,25 +13,25 @@ class PengirimanTableSeeder extends Seeder
     {
         DB::table('pengiriman')->insert([
             [
-                'id_toko'   => rand(1,5),
+                'id_toko'   => rand(6,10),
                 'volume'    => 2500,
                 'harga'     => 8500,
                 'total'     => 2500 * 8500,
             ],
             [
-                'id_toko'   => rand(1,5),
+                'id_toko'   => rand(6,10),
                 'volume'    => 3200,
                 'harga'     => 8200,
                 'total'     => 3200 * 8200,
             ],
             [
-                'id_toko'   => rand(1,5),
+                'id_toko'   => rand(6,10),
                 'volume'    => 2800,
                 'harga'     => 8500,
                 'total'     => 2800 * 8500,
             ],
             [
-                'id_toko'   => rand(1,5),
+                'id_toko'   => rand(6,10),
                 'volume'    => 1000,
                 'harga'     => 8500,
                 'total'     => 1000 * 8500,

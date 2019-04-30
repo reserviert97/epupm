@@ -53,7 +53,7 @@ class PembelianController extends Controller
         $day = $request->created_at['day'];
         $tz = 'Asia/Jakarta';
         $date = Carbon::createFromDate($year, $month, $day, $tz);
-        // dd($date); 
+        
         $pembelian = Pembelian::create([
             'no' => $request->no,
             'penjual_id' => $request->penjual,
