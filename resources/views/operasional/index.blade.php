@@ -36,7 +36,7 @@
                             <th class="w-1">No.</th>
                             <th>Tanggal</th>
                             <th>Item</th>
-                            <th class="w-1 text-right">Volume</th>
+                            <th class="w-1 text-right pr-0">Volume</th>
                             <th class="w-1"></th>
                             <th class="w-1"></th>
                             <th class="text-center">Total</th>
@@ -53,8 +53,8 @@
                                 
                                 @if ($item->jenis_item == 'Giling')
                                     <td class="text-right">{{ $item->giling->volume_gkg }}</td>
-                                    <td>Kg</td>
-                                    <td>Rp. </td>
+                                    <td class="pl-0">Kg</td>
+                                    <td class=""><span class="ml-5">Rp. </span></td>
                                     <td class="text-right">{{ number_format($item->giling->total) }}</td>
                                     <td>
                                         <a class="icon" href="{{ route('giling.edit', $item->giling->id) }}">
@@ -64,8 +64,8 @@
 
                                 @elseif ($item->jenis_item == 'Plastik')
                                     <td class="text-right">{{ $item->plastik->volume }}</td>
-                                    <td>Buah</td>
-                                    <td>Rp. </td>
+                                    <td class="pl-0">Buah</td>
+                                    <td class=""><span class="ml-5">Rp. </span></td>
                                     <td class="text-right">{{ number_format($item->plastik->total) }}</td>
                                     <td>
                                         <a class="icon" href="{{ route('plastik.edit', $item->plastik->id) }}">
@@ -74,18 +74,30 @@
                                     </td>
 
                                 @elseif ($item->jenis_item == 'Bongkar Muat')
-                                    <td>{{ $item->bongkarMuat->volume }} Kg</td>
-                                    <td>Rp. </td>
+                                    <td class="text-right">{{ $item->bongkarMuat->volume }}</td>
+                                    <td class="pl-0">Kg</td>
+                                    <td class=""><span class="ml-5">Rp. </span></td>
                                     <td class="text-right">{{ number_format($item->bongkarMuat->harga) }}</td>
+                                    <td>
+                                        <a class="icon" href="{{ route('bongkarmuat.edit', $item->bongkarMuat->id) }}">
+                                            <i class="fe fe-chevrons-left"></i>
+                                        </a>
+                                    </td>
                                 
                                 @elseif ($item->jenis_item == 'Sortir')
-                                    <td>{{ $item->sortir->volume }} Kg</td>
-                                    <td>Rp. </td>
+                                    <td class="text-right">{{ $item->sortir->volume }}</td>
+                                    <td class="pl-0">Kg</td>
+                                    <td class=""><span class="ml-5">Rp. </span></td>
                                     <td class="text-right">{{number_format($item->sortir->harga) }}</td>
+                                    <td>
+                                        <a class="icon" href="{{ route('sortir.edit', $item->sortir->id) }}">
+                                            <i class="fe fe-chevrons-left"></i>
+                                        </a>
+                                    </td>
 
                                 @elseif ($item->jenis_item == 'Transport')
                                     <td>{{ $item->transport->volume }} Kg</td>
-                                    <td>Rp. </td>
+                                    <td class=""><span class="ml-5">Rp. </span></td>
                                     <td class="text-right">{{ number_format($item->transport->harga) }}</td>
 
                                 @endif

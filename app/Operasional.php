@@ -31,6 +31,6 @@ class Operasional extends Model
 
     public function bongkarMuat()
     {
-        return $this->hasOne(BongkatMuat::class);
+        return $this->hasOne(BongkarMuat::class);
     }
 }

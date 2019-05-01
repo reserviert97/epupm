@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BongkatMuat extends Model
+class BongkarMuat extends Model
 {
     protected $table = 'bongkar_muat';
-    protected $guarded = '';
+    protected $guarded = [];
 
     public function operasional()
     {

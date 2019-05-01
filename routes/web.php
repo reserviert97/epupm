@@ -54,13 +54,18 @@ Route::prefix('operasional')->group(function() {
     Route::delete('/giling/{giling}', 'OperasionalController@destroyGiling')->name('giling.destroy');
 
     Route::get('/bongkar-muat', 'OperasionalController@bongkarMuat')->name('bongkarmuat.create');
+    Route::get('/bongkar-muat/{bongkarMuat}', 'OperasionalController@editBongkarMuat')->name('bongkarmuat.edit');
     Route::post('/bongkar-muat', 'OperasionalController@storeBongkarMuat')->name('bongkarmuat.store');
+    Route::put('/bongkar-muat/{bongkarMuat}', 'OperasionalController@updateBongkarMuat')->name('bongkarmuat.update');
 
     Route::get('/plastik', 'OperasionalController@plastik')->name('plastik.create');
     Route::get('/plastik/{plastik}/edit', 'OperasionalController@editPlastik')->name('plastik.edit');
     Route::post('/plastik', 'OperasionalController@storePlastik')->name('plastik.store');
+    Route::put('/plastik/{plastik}', 'OperasionalController@updatePlastik')->name('plastik.update');
+    Route::delete('/plastik/{plastik}', 'OperasionalController@destroyPlastik')->name('plastik.destroy');
 
     Route::get('/sortir', 'OperasionalController@sortir')->name('sortir.create');
+    Route::get('/sortir/{sortir}', 'OperasionalController@editSortir')->name('sortir.edit');
     Route::post('/sortir', 'OperasionalController@storeSortir')->name('sortir.store');
 });
 

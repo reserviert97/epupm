@@ -7,7 +7,7 @@ use App\Operasional;
 use App\Transport;
 use Carbon\Carbon;
 use App\Sortir;
-use App\BongkatMuat;
+use App\BongkarMuat;
 use App\Plastik;
 use App\Giling;
 
@@ -55,6 +55,12 @@ class OperasionalController extends Controller
         return view('operasional.sortir.sortir', compact('inv'));
     }
 
+    public function editSortir(Sortir $sortir)
+    {
+        $date = new Carbon($sortir->created_at);
+        return view('operasional.sortir.edit')->with(['data' => $sortir, 'date' => $date]);
+    }
+
     public function storeSortir(Request $request)
     {
         $date = $this->generateDate($request->created_at);
@@ -83,7 +89,7 @@ class OperasionalController extends Controller
 
     public function bongkarMuat()
     {
-        $inv = $this->generateInv(BongkatMuat::class, 'no_bm', 'STR', '5000');
+        $inv = $this->generateInv(BongkarMuat::class, 'no_bm', 'STR', '5000');
         return view('operasional.bm.bm', compact('inv'));
     }
 
@@ -98,7 +104,7 @@ class OperasionalController extends Controller
             'updated_at' => now(),
         ]);
 
-        BongkatMuat::insert([
+        BongkarMuat::insert([
             'harga' => 200 * $request->volume,
             'no_bm' => $request->no_bm,
             'volume' => $request->volume,
@@ -111,15 +117,36 @@ class OperasionalController extends Controller
         return redirect()->route('operasional.index');
     }
 
+    public function editBongkarMuat(BongkarMuat $bongkarMuat)
+    {
+        $date = new Carbon($bongkarMuat->created_at);
+        return view('operasional.bm.edit')->with(['data' => $bongkarMuat, 'date' => $date]);
+    }
+
+    public function updateBongkarMuat(Request $request, BongkarMuat $bongkarMuat)
+    {
+        $date = $this->generateDate($request->created_at);
+
+        $bongkarMuat->operasional->update([
+            'created_at' => $date,
+            'updated_at' => now(),
+        ]);
+        
+        $bongkarMuat->update([
+            'harga' => 200 * $request->volume,
+            'volume' => $request->volume,
+            'created_at' => $date,
+            'updated_at' => now()
+        ]);
+
+        session()->flash('success', 'Data Transaksi Bongkar Muat berhasil diupdate');
+        return redirect()->back();
+    }
+
     public function plastik()
     {
         $inv = $this->generateInv(Plastik::class, 'no_plastik', 'PLS', '6000');
         return view('operasional.plastik.plastik', compact('inv'));
-    }
-
-    public function editPlastik(Plastik $plastik)
-    {
-        return view('operasional.plastik.edit', compact('plastik'));
     }
 
     public function storePlastik(Request $request)
@@ -145,6 +172,43 @@ class OperasionalController extends Controller
         ]);
 
         session()->flash('success', 'Transaksi Pembelian Plastik berhasil ditambahkan');
+        return redirect()->route('operasional.index');
+    }
+
+    public function editPlastik(Plastik $plastik)
+    {
+        $date = new Carbon($plastik->created_at);
+        return view('operasional.plastik.edit')->with(['data' => $plastik, 'date' => $date]);
+    }
+
+    public function updatePlastik(Plastik $plastik, Request $request)
+    {
+        $date = $this->generateDate($request->created_at);
+
+        $plastik->operasional->update([
+            'created_at' => $date,
+            'updated_at' => now(),
+        ]);
+        
+        $plastik->update([
+            'harga' => $request->harga,
+            'volume' => $request->volume,
+            'total' => $request->harga * $request->volume,
+            'jenis' => $request->jenis,
+            'created_at' => $date,
+            'updated_at' => now()
+        ]);
+
+        session()->flash('success', 'Transaksi Pembelian Plastik berhasil diubah');
+        return redirect()->back();
+    }
+
+    public function destroyPlastik(Plastik $plastik)
+    {
+        $plastik->operasional->delete();
+        $plastik->delete();
+
+        session()->flash('success', 'Data Pembelian Plastik Berhasil dihapus');
         return redirect()->route('operasional.index');
     }
 
@@ -183,7 +247,7 @@ class OperasionalController extends Controller
     public function editGiling(Giling $giling)
     {
         $date = new Carbon($giling->created_at);
-        return view('operasional.giling.edit')->with(['data'=> $giling, 'inv' => $giling->no_giling, 'date' => $date]);
+        return view('operasional.giling.edit')->with(['data'=> $giling, 'date' => $date]);
     }
 
     public function updateGiling(Request $request, Giling $giling)
