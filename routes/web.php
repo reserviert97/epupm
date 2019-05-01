@@ -45,7 +45,10 @@ Route::prefix('toko')->group(function() {
 Route::prefix('operasional')->group(function() {
     Route::get('/', 'OperasionalController@index')->name('operasional.index');
     Route::get('/transport', 'OperasionalController@transport')->name('transport.create');
+    Route::get('/transport/{transport}', 'OperasionalController@editTransport')->name('transport.edit');
     Route::post('/transport', 'OperasionalController@storeTransport')->name('transport.store');
+    Route::put('/transport/{transport}', 'OperasionalController@updateTransport')->name('transport.update');
+    Route::delete('/transport/{transport}', 'OperasionalController@destroyTransport')->name('transport.destroy');
 
     Route::get('/giling', 'OperasionalController@giling')->name('giling.create');
     Route::get('/giling/{giling}/edit', 'OperasionalController@editGiling')->name('giling.edit');
@@ -57,6 +60,7 @@ Route::prefix('operasional')->group(function() {
     Route::get('/bongkar-muat/{bongkarMuat}', 'OperasionalController@editBongkarMuat')->name('bongkarmuat.edit');
     Route::post('/bongkar-muat', 'OperasionalController@storeBongkarMuat')->name('bongkarmuat.store');
     Route::put('/bongkar-muat/{bongkarMuat}', 'OperasionalController@updateBongkarMuat')->name('bongkarmuat.update');
+    Route::delete('/bongkar-muat/{bongkarMuat}', 'OperasionalController@destroyBongkarMuat')->name('bongkarmuat.destroy');
 
     Route::get('/plastik', 'OperasionalController@plastik')->name('plastik.create');
     Route::get('/plastik/{plastik}/edit', 'OperasionalController@editPlastik')->name('plastik.edit');
@@ -67,6 +71,8 @@ Route::prefix('operasional')->group(function() {
     Route::get('/sortir', 'OperasionalController@sortir')->name('sortir.create');
     Route::get('/sortir/{sortir}', 'OperasionalController@editSortir')->name('sortir.edit');
     Route::post('/sortir', 'OperasionalController@storeSortir')->name('sortir.store');
+    Route::put('/sortir/{sortir}', 'OperasionalController@updateSortir')->name('sortir.update');
+    Route::delete('/sortir/{sortir}', 'OperasionalController@destroySortir')->name('sortir.destroy');
 });
 
 Auth::routes();

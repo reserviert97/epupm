@@ -11,6 +11,6 @@ class Sortir extends Model
 
     public function operasional()
     {
-        $this->belongsTo(Operasional::class);
+        return $this->belongsTo(Operasional::class);
     }
 }

@@ -49,6 +49,41 @@ class OperasionalController extends Controller
         return redirect()->route('operasional.index');
     }
 
+    public function editTransport(Transport $transport)
+    {
+        $date = new Carbon($transport->created_at);
+        return view('operasional.transport.edit')->with(['data' => $transport, 'date' => $date]);
+    }
+
+    public function updateTransport(Transport $transport, Request $request)
+    {
+        $date = $this->generateDate($request->created_at);
+
+        $transport->operasional->update([
+            'created_at' => $date,
+            'updated_at' => now(),
+        ]);
+        
+        $transport->update([
+            'harga' => 200 * $request->volume,
+            'volume' => $request->volume,
+            'created_at' => $date,
+            'updated_at' => now()
+        ]);
+
+        session()->flash('success', 'Transaksi Transport berhasil diupdate');
+        return redirect()->back();
+    }
+
+    public function destroyTransport(Transport $transport)
+    {
+        $transport->operasional->delete();
+        $transport->delete();
+
+        session()->flash('success', 'Transaksi Transport Berhasil dihapus');
+        return redirect()->route('operasional.index');
+    }
+
     public function sortir()
     {
         $inv = $this->generateInv(Sortir::class, 'no_sortir', 'STR', '4000');
@@ -59,6 +94,35 @@ class OperasionalController extends Controller
     {
         $date = new Carbon($sortir->created_at);
         return view('operasional.sortir.edit')->with(['data' => $sortir, 'date' => $date]);
+    }
+
+    public function updateSortir(Sortir $sortir, Request $request)
+    {
+        $date = $this->generateDate($request->created_at);
+
+        $sortir->operasional->update([
+            'created_at' => $date,
+            'updated_at' => now(),
+        ]);
+        
+        $sortir->update([
+            'harga' => 200 * $request->volume,
+            'volume' => $request->volume,
+            'created_at' => $date,
+            'updated_at' => now()
+        ]);
+
+        session()->flash('success', 'Data Sortir dan Pengemasan berhasil diupdate');
+        return redirect()->back();
+    }
+
+    public function destroySortir(Sortir $sortir)
+    {
+        $sortir->operasional->delete();
+        $sortir->delete();
+
+        session()->flash('success', 'Data Sortir dan Pengemasan Berhasil dihapus');
+        return redirect()->route('operasional.index');
     }
 
     public function storeSortir(Request $request)
@@ -84,7 +148,6 @@ class OperasionalController extends Controller
         session()->flash('success', 'Berhasil menambahkan transaksi Sortir');
         return redirect()->route('operasional.index');
         
-
     }
 
     public function bongkarMuat()
@@ -141,6 +204,15 @@ class OperasionalController extends Controller
 
         session()->flash('success', 'Data Transaksi Bongkar Muat berhasil diupdate');
         return redirect()->back();
+    }
+
+    public function destroyBongkarMuat(BongkarMuat $bongkarMuat)
+    {
+        $bongkarMuat->operasional->delete();
+        $bongkarMuat->delete();
+
+        session()->flash('success', 'Transkasi Bongkar Muat Berhasil dihapus');
+        return redirect()->route('operasional.index');
     }
 
     public function plastik()

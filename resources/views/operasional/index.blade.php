@@ -96,9 +96,15 @@
                                     </td>
 
                                 @elseif ($item->jenis_item == 'Transport')
-                                    <td>{{ $item->transport->volume }} Kg</td>
+                                    <td class="text-right">{{ $item->transport->volume }}</td>
+                                    <td class="pl-0">Kg</td>
                                     <td class=""><span class="ml-5">Rp. </span></td>
                                     <td class="text-right">{{ number_format($item->transport->harga) }}</td>
+                                    <td>
+                                        <a class="icon" href="{{ route('transport.edit', $item->transport->id) }}">
+                                            <i class="fe fe-chevrons-left"></i>
+                                        </a>
+                                    </td>
 
                                 @endif
 

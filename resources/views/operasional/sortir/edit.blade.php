@@ -5,12 +5,12 @@
     @include('_include.alert')
     <div class="col-lg-12">
         <div class="card">
-            <form action="{{ route('bongkarmuat.update', $data->id) }}" method="post">
+            <form action="{{ route('sortir.update', $data->id) }}" method="post">
             @csrf
             @method('put')
             
             <div class="card-header">
-                <h3 class="card-title">Ubah Transaksi Bongkar Muat</h3>
+                <h3 class="card-title">Ubah Transaksi Sortir dan Pengemasan</h3>
                 <div class="card-options">
                     <a href="{{ route('operasional.index') }}" class="btn btn-secondary btn-sm"><i class="fe fe-arrow-left mr-1"></i>Kembali</a>
                     <button type="submit" class="btn btn-success btn-sm ml-2"><i class="fe fe-check mr-1"></i> simpan</button>
@@ -23,8 +23,8 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <label class="form-label">Nomor</label>
-                            <input type="text" class="form-control" value="{{ $data->no_bm }}" disabled>
-                            <input type="hidden" value="{{ $data->no_bm }}" name="no">
+                            <input type="text" class="form-control" value="{{ $data->no_sortir }}" disabled>
+                            <input type="hidden" value="{{ $data->no_sortir }}" name="no">
                         </div>
                         
                         <div class="form-group">
@@ -114,7 +114,7 @@
             </form>
 
             <div class="card-footer text-right">
-                <form action="{{ route('bongkarmuat.destroy', $data->id ) }}" method="post">
+                <form action="{{ route('sortir.destroy', $data->id ) }}" method="post">
                     @csrf @method('delete')
                     <button type="submit" class="btn btn-danger btn-sm mr-1"><i class="fe fe-trash mr-1" onclick="return confirm('Anda Yakin ?')"></i> delete</button>
                 </form>
