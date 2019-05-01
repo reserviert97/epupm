@@ -15,10 +15,10 @@ class CreateTableBongkarMuat extends Migration
     {
         Schema::create('bongkar_muat', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('no_bm')->unique();
             $table->unsignedBigInteger('operasional_id');
             $table->bigInteger('harga');
             $table->bigInteger('volume');
-            $table->unsignedBigInteger('id_pengiriman');
             $table->timestamps();
         });
     }

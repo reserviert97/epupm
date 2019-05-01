@@ -15,6 +15,7 @@ class CreateTableSortir extends Migration
     {
         Schema::create('sortir', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('no_sortir')->unique();
             $table->unsignedBigInteger('operasional_id');
             $table->bigInteger('harga');
             $table->bigInteger('volume');

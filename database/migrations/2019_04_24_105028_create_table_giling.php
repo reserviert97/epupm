@@ -20,8 +20,7 @@ class CreateTableGiling extends Migration
             $table->bigInteger('total');
             $table->bigInteger('volume_gkg');
             $table->bigInteger('volume_beras');
-            $table->integer('rendemen');
-            $table->unsignedBigInteger('penjual');
+            $table->double('rendemen');
             $table->timestamps();
         });
     }

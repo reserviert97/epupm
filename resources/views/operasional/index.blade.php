@@ -5,7 +5,6 @@
     @include('_include.alert')
     <div class="page-header">
         <h1 class="page-title">Operasional</h1>
-        {{-- <div class="page-subtitle">Total : {{ count($data) }} Penjual</div> --}}
 
         <div class="page-options d-flex">
             <button data-toggle="dropdown" type="button" class="btn btn-secondary dropdown-toggle" aria-expanded="false">
@@ -37,7 +36,8 @@
                             <th class="w-1">No.</th>
                             <th>Tanggal</th>
                             <th>Item</th>
-                            <th>Volume</th>
+                            <th class="w-1 text-right">Volume</th>
+                            <th class="w-1"></th>
                             <th class="w-1"></th>
                             <th class="text-center">Total</th>
                             <th></th>
@@ -52,14 +52,26 @@
                                 <td>{{ $item->jenis_item }}</td>
                                 
                                 @if ($item->jenis_item == 'Giling')
-                                    <td>{{ $item->giling->volume_gkg }} Kg</td>
+                                    <td class="text-right">{{ $item->giling->volume_gkg }}</td>
+                                    <td>Kg</td>
                                     <td>Rp. </td>
                                     <td class="text-right">{{ number_format($item->giling->total) }}</td>
+                                    <td>
+                                        <a class="icon" href="{{ route('giling.edit', $item->giling->id) }}">
+                                            <i class="fe fe-chevrons-left"></i>
+                                        </a>
+                                    </td>
 
                                 @elseif ($item->jenis_item == 'Plastik')
-                                    <td>{{ $item->plastik->volume }} Buah</td>
+                                    <td class="text-right">{{ $item->plastik->volume }}</td>
+                                    <td>Buah</td>
                                     <td>Rp. </td>
                                     <td class="text-right">{{ number_format($item->plastik->total) }}</td>
+                                    <td>
+                                        <a class="icon" href="{{ route('plastik.edit', $item->plastik->id) }}">
+                                            <i class="fe fe-chevrons-left"></i>
+                                        </a>
+                                    </td>
 
                                 @elseif ($item->jenis_item == 'Bongkar Muat')
                                     <td>{{ $item->bongkarMuat->volume }} Kg</td>
@@ -78,25 +90,8 @@
 
                                 @endif
 
-                                
-                                <td>
-                                    <a class="icon" href="{{ route('beli.edit', $item->id) }}">
-                                        <i class="fe fe-chevrons-left"></i>
-                                    </a>
-                                </td>
                             </tr>
                         @endforeach
-
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
                     </tbody>
                 </table>
             </div>

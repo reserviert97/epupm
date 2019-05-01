@@ -15,9 +15,12 @@ class CreateTablePlastik extends Migration
     {
         Schema::create('plastik', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('no_plastik')->unique();
             $table->unsignedBigInteger('operasional_id');
             $table->bigInteger('harga');
             $table->bigInteger('volume');
+            $table->bigInteger('total');
+            $table->string('jenis');
             $table->timestamps();
         });
     }

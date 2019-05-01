@@ -117,6 +117,11 @@ class OperasionalController extends Controller
         return view('operasional.plastik.plastik', compact('inv'));
     }
 
+    public function editPlastik(Plastik $plastik)
+    {
+        return view('operasional.plastik.edit', compact('plastik'));
+    }
+
     public function storePlastik(Request $request)
     {
         $date = $this->generateDate($request->created_at);
@@ -172,6 +177,43 @@ class OperasionalController extends Controller
         ]);
 
         session()->flash('success', 'Transaksi Penggilingan berhasil ditambahkan');
+        return redirect()->route('operasional.index');
+    }
+
+    public function editGiling(Giling $giling)
+    {
+        $date = new Carbon($giling->created_at);
+        return view('operasional.giling.edit')->with(['data'=> $giling, 'inv' => $giling->no_giling, 'date' => $date]);
+    }
+
+    public function updateGiling(Request $request, Giling $giling)
+    {
+        $date = $this->generateDate($request->created_at);
+
+        $giling->operasional->update([
+            'created_at' => $date,
+            'updated_at' => now(),
+        ]);
+        
+        $giling->update([
+            'created_at' => $date,
+            'updated_at' => now(),
+            'volume_gkg' => $request->volume_gkg,
+            'volume_beras' => $request->volume_beras,
+            'total' => 350 * $request->volume_beras,
+            'rendemen' => ($request->volume_beras/$request->volume_gkg) * 100,
+        ]);
+
+        session()->flash('success', 'Data Penggilingan berhasil diupdate');
+        return redirect()->back();
+    }
+
+    public function destroyGiling(Giling $giling)
+    {
+        $giling->operasional->delete();
+        $giling->delete();
+
+        session()->flash('success', 'Data Penggilingan Berhasil dihapus');
         return redirect()->route('operasional.index');
     }
 
