@@ -15,10 +15,10 @@ class CreateTableTransport extends Migration
     {
         Schema::create('transport', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('no_transport')->unique();
             $table->unsignedBigInteger('operasional_id');
             $table->bigInteger('harga');
             $table->bigInteger('volume');
-            $table->unsignedBigInteger('id_pembelian');
             $table->timestamps();
         });
     }

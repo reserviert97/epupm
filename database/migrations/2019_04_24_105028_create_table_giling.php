@@ -15,6 +15,7 @@ class CreateTableGiling extends Migration
     {
         Schema::create('giling', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('no_giling')->unique();
             $table->unsignedBigInteger('operasional_id');
             $table->bigInteger('total');
             $table->bigInteger('volume_gkg');

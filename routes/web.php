@@ -44,12 +44,16 @@ Route::prefix('toko')->group(function() {
 
 Route::prefix('operasional')->group(function() {
     Route::get('/', 'OperasionalController@index')->name('operasional.index');
-    Route::get('/transport', 'OperasionalController@transport')->name('operasional.transport');
-    Route::get('/giling', 'OperasionalController@giling')->name('operasional.giling');
-    Route::get('/kemas', 'OperasionalController@kemas')->name('operasional.kemas');
-    Route::get('/bm', 'OperasionalController@bm')->name('operasional.bm');
-    Route::get('/plastik', 'OperasionalController@plastik')->name('operasional.plastik');
-    Route::post('/', 'OperasionalController@store')->name('operasional.store');
+    Route::get('/transport', 'OperasionalController@transport')->name('transport.create');
+    Route::post('/transport', 'OperasionalController@storeTransport')->name('transport.store');
+    Route::get('/giling', 'OperasionalController@giling')->name('giling.create');
+    Route::post('/giling', 'OperasionalController@storeGiling')->name('giling.store');
+    Route::get('/bongkar-muat', 'OperasionalController@bongkarMuat')->name('bongkarmuat.create');
+    Route::post('/bongkar-muat', 'OperasionalController@storeBongkarMuat')->name('bongkarmuat.store');
+    Route::get('/plastik', 'OperasionalController@plastik')->name('plastik.create');
+    Route::post('/plastik', 'OperasionalController@storePlastik')->name('plastik.store');
+    Route::get('/sortir', 'OperasionalController@sortir')->name('sortir.create');
+    Route::post('/sortir', 'OperasionalController@storeSortir')->name('sortir.store');
 });
 
 Auth::routes();
