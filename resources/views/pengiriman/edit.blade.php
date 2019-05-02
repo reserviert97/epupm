@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Edit #'. $pengiriman->no_kirim)
+
 @section('content')
 <div class="container">
     @include('_include.alert')

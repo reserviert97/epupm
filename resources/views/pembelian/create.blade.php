@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Buat Transaksi Pembelian')
+
 @section('content')
 <div class="container">
     <div class="col-lg-12">

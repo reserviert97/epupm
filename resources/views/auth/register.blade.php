@@ -1,5 +1,7 @@
 @extends('layouts.back')
 
+@section('title', 'Register | ePUPM')
+
 @section('content')
 <div class="page">
     <div class="page-single">
@@ -11,6 +13,7 @@
                     </div>
                     <form class="card" action="{{ route('register') }}" method="post">
                     @csrf
+
                         <div class="card-body p-6">
                             <div class="card-title">{{ __('Register') }}</div>
 
@@ -52,19 +55,19 @@
                             <div class="form-group">
                                 <label class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="agree" id="agree" {{ old('remember') ? 'checked' : '' }}>
-                                    <span class="custom-control-label">Agree the <a href="terms.html">terms and policy</a></span>
+                                    <span class="custom-control-label">Saya setuju <a href="">syarat dan ketentuan</a></span>
                                 </label>
                             </div>
 
                             <div class="form-footer">
                                 <button type="submit" class="btn btn-primary btn-block">{{ __('Create new account') }}</button>
                             </div>
-
                         </div>
+
                     </form>
 
                     <div class="text-center text-muted">
-                        Already have account? <a href="./login.html">Sign in</a>
+                        Already have account? <a href="{{ route('login') }}">Sign in</a>
                     </div>
                 </div>
             </div>

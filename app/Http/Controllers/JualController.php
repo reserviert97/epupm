@@ -17,25 +17,14 @@ class JualController extends Controller
 
     public function create()
     {
-        $nomorAkhir = Pengiriman::orderBy('no_kirim', 'Desc')->first();
-        $noInvoice = explode('-', $nomorAkhir->no_kirim);
-
-        $bln = now()->month < 10 ? '0' . now()->month : now()->month; 
-        $key = $bln . now()->year;
-
-        $inv = $noInvoice[0].'-'. $key .'-'. ($noInvoice[2]+1); 
-
+        $inv = $this->generateInv(Pengiriman::class, 'no_kirim', 'KRM', '2000');
         $data = Toko::all();
         return view('pengiriman.create', compact('data', 'inv'));
     }
 
     public function store(Request $request)
     {
-        $year = $request->created_at['year'];
-        $month = $request->created_at['month'];
-        $day = $request->created_at['day'];
-        $tz = 'Asia/Jakarta';
-        $date = Carbon::createFromDate($year, $month, $day, $tz);
+        $date = $this->generateDate($request->created_at);
 
         Pengiriman::insert([
             'toko_id' => $request->toko,
@@ -68,11 +57,7 @@ class JualController extends Controller
     {
         $pengiriman = Pengiriman::findOrFail($id);
 
-        $year = $request->created_at['year'];
-        $month = $request->created_at['month'];
-        $day = $request->created_at['day'];
-        $tz = 'Asia/Jakarta';
-        $date = Carbon::createFromDate($year, $month, $day, $tz);
+        $date = $this->generateDate($request->created_at);
 
         $pengiriman->update([
             'no_kirim' => $request->no_kirim,
@@ -86,5 +71,29 @@ class JualController extends Controller
 
         session()->flash('success', 'Data berhasil diubah');
         return redirect()->back();
+    }
+
+    public function generateInv($model, $kolom, $kode, $awal)
+    {
+        $nomorAkhir = $model::orderBy($kolom, 'Desc')->first();
+
+        $bln = now()->month < 10 ? '0' . now()->month : now()->month; 
+        $key = $bln . now()->year;
+
+        if ($nomorAkhir == null) {
+            $noInvoice = explode('-', $kode.'-'.$key.'-'.$awal);
+        }else {
+            $noInvoice = explode('-', $nomorAkhir->$kolom);
+        }
+
+        $inv = $noInvoice[0].'-'. $key .'-'. ($noInvoice[2]+1);
+        
+        return $inv;
+    }
+
+    public function generateDate($data)
+    {
+        $date = Carbon::createFromDate($data['year'], $data['month'], $data['day'], 'Asia/Jakarta');
+        return $date;
     }
 }

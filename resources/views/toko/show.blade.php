@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $data->nama.' | Toko')
+
 @section('content')
 <div class="container">
     <div class="row">

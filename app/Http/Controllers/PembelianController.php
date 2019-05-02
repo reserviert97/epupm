@@ -28,14 +28,7 @@ class PembelianController extends Controller
      */
     public function create()
     {
-        $nomorAkhir = Pembelian::orderBy('no', 'Desc')->first();
-        $noInvoice = explode('-', $nomorAkhir->no);
-
-        $bln = now()->month < 10 ? '0' . now()->month : now()->month; 
-        $key = $bln . now()->year;
-
-        $inv = $noInvoice[0].'-'. $key .'-'. ($noInvoice[2]+1); 
-        
+        $inv = $this->generateInv(Pembelian::class, 'no', 'PMB', '1000');
         $penjual = Penjual::all();
         return view('pembelian.create', compact('penjual', 'inv'));
     }
@@ -48,13 +41,8 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        $year = $request->created_at['year'];
-        $month = $request->created_at['month'];
-        $day = $request->created_at['day'];
-        $tz = 'Asia/Jakarta';
-        $date = Carbon::createFromDate($year, $month, $day, $tz);
-        
-        $pembelian = Pembelian::create([
+        $date = $this->generateDate($request->created_at);
+        Pembelian::create([
             'no' => $request->no,
             'penjual_id' => $request->penjual,
             'volume' => $request->volume,
@@ -102,11 +90,7 @@ class PembelianController extends Controller
     {
         $pembelian = Pembelian::findOrFail($id);
 
-        $year = $request->created_at['year'];
-        $month = $request->created_at['month'];
-        $day = $request->created_at['day'];
-        $tz = 'Asia/Jakarta';
-        $date = Carbon::createFromDate($year, $month, $day, $tz);
+        $date = $this->generateDate($request->created_at);
 
         $pembelian->update([
             'no' => $request->no,
@@ -134,5 +118,30 @@ class PembelianController extends Controller
         $pembelian->delete();
         session()->flash('success', 'Data berhasil dihapus');
         return redirect()->route('beli.index');
+    }
+
+
+    public function generateInv($model, $kolom, $kode, $awal)
+    {
+        $nomorAkhir = $model::orderBy($kolom, 'Desc')->first();
+
+        $bln = now()->month < 10 ? '0' . now()->month : now()->month; 
+        $key = $bln . now()->year;
+
+        if ($nomorAkhir == null) {
+            $noInvoice = explode('-', $kode.'-'.$key.'-'.$awal);
+        }else {
+            $noInvoice = explode('-', $nomorAkhir->$kolom);
+        }
+
+        $inv = $noInvoice[0].'-'. $key .'-'. ($noInvoice[2]+1);
+        
+        return $inv;
+    }
+
+    public function generateDate($data)
+    {
+        $date = Carbon::createFromDate($data['year'], $data['month'], $data['day'], 'Asia/Jakarta');
+        return $date;
     }
 }

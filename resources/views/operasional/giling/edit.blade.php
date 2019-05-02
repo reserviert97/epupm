@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Edit #'.$data->no_giling)
+
 @section('content')
 <div class="container">
     @include('_include.alert')

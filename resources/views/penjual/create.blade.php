@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Tambah Penjual')
+
 @section('content')
 <div class="container">
     <div class="col-lg-6 mx-auto">

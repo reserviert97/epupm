@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Daftar Pembelian')
+
 @section('content')
 <div class="container">
     @include('_include.alert')
