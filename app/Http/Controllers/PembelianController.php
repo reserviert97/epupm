@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pembelian;
 use App\Penjual;
 use Carbon\Carbon;
+use Faker\Factory as Faker;
 
 class PembelianController extends Controller
 {
@@ -16,8 +17,7 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        $data = Pembelian::orderBy('id', 'Desc')->get();
-       
+        $data = Pembelian::orderBy('created_at', 'Desc')->get();
         return view('pembelian.index', compact('data'));
     }
 

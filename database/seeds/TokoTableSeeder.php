@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Faker\Factory as Faker;
 class TokoTableSeeder extends Seeder
 {
     /**
@@ -11,27 +11,15 @@ class TokoTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('toko')->insert([
-            [
-                'nama' => 'TTI Ujung',
-                'alamat' => 'Negla',
-            ],
-            [
-                'nama' => 'TTI Nur',
-                'alamat' => 'Negla',
-            ],
-            [
-                'nama' => 'TTI Rustiah',
-                'alamat' => 'Mayag',
-            ],
-            [
-                'nama' => 'TTI Karangjunti',
-                'alamat' => 'Karangjunti',
-            ],
-            [
-                'nama' => 'TTI Ciledug',
-                'alamat' => 'Ciledug',
-            ],
-        ]);
+        $faker = Faker::create('id_ID');
+        $data = [];
+
+        for ($i=0; $i < 5; $i++) { 
+            $data[] = [
+                'nama' => $faker->company,
+                'alamat' => $faker->city,
+            ];
+        }
+        DB::table('toko')->insert($data);
     }
 }

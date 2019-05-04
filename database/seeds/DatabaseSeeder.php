@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(PembelianTableSeeder::class);
         Model::unguard();
 
-        
         $this->call(PenjualTableSeeder::class);
         $this->call(TokoTableSeeder::class);
+
         $this->call(PembelianTableSeeder::class);
         $this->call(PengirimanTableSeeder::class);
 

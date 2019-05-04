@@ -15,7 +15,7 @@ class OperasionalController extends Controller
 {
     public function index()
     {
-        $data = Operasional::orderBy('id', 'Desc')->get();
+        $data = Operasional::orderBy('created_at', 'Desc')->get();
         return view('operasional.index', compact('data'));
     }
 

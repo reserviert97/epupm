@@ -11,7 +11,7 @@ class JualController extends Controller
 {
     public function index()
     {
-        $data = Pengiriman::orderBy('no_kirim', 'Desc')->get();
+        $data = Pengiriman::orderBy('created_at', 'Desc')->get();
         return view('pengiriman.index', compact('data'));
     }
 

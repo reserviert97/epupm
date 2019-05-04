@@ -40,6 +40,8 @@ class TokoController extends Controller
             'nama' => $request->nama,
             'alamat' => $request->alamat
         ]);
+
+        session()->flash('success', 'Data berhasil ditambahkan');
         return redirect()->route('toko.index');
     }
 

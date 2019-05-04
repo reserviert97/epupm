@@ -10,7 +10,7 @@
                 <div class="dropdown">
                     <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                         <span class="avatar avatar-cyan">{{ substr(Auth::user()->name, 0, 1) }}
-                            <span class="avatar-status"></span>
+                            <span class="avatar-status bg-green"></span>
                         </span>
                         
                         <span class="ml-2 d-none d-lg-block">

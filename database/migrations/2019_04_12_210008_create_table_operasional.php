@@ -16,8 +16,8 @@ class CreateTableOperasional extends Migration
         Schema::create('operasional', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('jenis_item');
-            $table->string('nomor');
-            $table->timestamp();
+            $table->string('nomor')->unique();
+            $table->timestamps();
         });
     }
 

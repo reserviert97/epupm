@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Faker\Factory as Faker;
+use Carbon\Carbon;
 class PengirimanTableSeeder extends Seeder
 {
     /**
@@ -11,32 +12,35 @@ class PengirimanTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pengiriman')->insert([
-            [
-                'id_toko'   => rand(6,10),
-                'volume'    => 2500,
-                'harga'     => 8500,
-                'total'     => 2500 * 8500,
-            ],
-            [
-                'id_toko'   => rand(6,10),
-                'volume'    => 3200,
-                'harga'     => 8200,
-                'total'     => 3200 * 8200,
-            ],
-            [
-                'id_toko'   => rand(6,10),
-                'volume'    => 2800,
-                'harga'     => 8500,
-                'total'     => 2800 * 8500,
-            ],
-            [
-                'id_toko'   => rand(6,10),
-                'volume'    => 1000,
-                'harga'     => 8500,
-                'total'     => 1000 * 8500,
-            ],
+        $faker = Faker::create();
+        $harga = [8000, 8200, 8500];
+        $volume = [250, 300, 500, 750, 1000, 1500, 2000];
+        $data = [];
 
-        ]);
+        for ($i=0; $i < 10; $i++) { 
+            $deal = $harga[rand(0,2)];
+            $vol = $volume[rand(0,6)];
+            $date = new Carbon($faker->dateTimeBetween('-1 month', '+1 month', 'Asia/Jakarta')->getTimestamp());
+            
+            $data[] = [
+                'no_kirim' => $this->generateInv('KRM', (2000+$i), $date),
+                'toko_id' => rand(1, 5),
+                'volume' => $vol,
+                'harga' => $deal,
+                'total' => $deal*$vol,
+                'created_at' => $date,
+            ];
+        }
+
+        DB::table('pengiriman')->insert($data);
+    }
+
+    public function generateInv($kode, $nomor, $tanggal)
+    {
+        $bln = $tanggal->month < 10 ? '0' . $tanggal->month : $tanggal->month; 
+        $key = $bln . $tanggal->year;
+        $noInvoice = $kode.'-'.$key.'-'.$nomor;
+
+        return $noInvoice;
     }
 }

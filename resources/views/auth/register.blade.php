@@ -15,10 +15,10 @@
                     @csrf
 
                         <div class="card-body p-6">
-                            <div class="card-title">{{ __('Register') }}</div>
+                            <div class="card-title">{{ __('Pendaftaran') }}</div>
 
                             <div class="form-group">
-                                <label class="form-label">{{ __('Name') }}</label>
+                                <label class="form-label">{{ __('Nama') }}</label>
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
@@ -27,7 +27,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="form-label">{{ __('E-Mail Address') }}</label>
+                                <label for="email" class="form-label">{{ __('Alamat E-Mail') }}</label>
     
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+                                <label for="password-confirm" class="form-label">{{ __('Konfirmasi Password') }}</label>
     
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
@@ -60,14 +60,14 @@
                             </div>
 
                             <div class="form-footer">
-                                <button type="submit" class="btn btn-primary btn-block">{{ __('Create new account') }}</button>
+                                <button type="submit" class="btn btn-primary btn-block">{{ __('Buat Akun') }}</button>
                             </div>
                         </div>
 
                     </form>
 
                     <div class="text-center text-muted">
-                        Already have account? <a href="{{ route('login') }}">Sign in</a>
+                        Sudah punya akun? <a href="{{ route('login') }}">Login</a>
                     </div>
                 </div>
             </div>

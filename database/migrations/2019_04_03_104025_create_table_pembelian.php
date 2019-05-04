@@ -18,7 +18,6 @@ class CreateTablePembelian extends Migration
             $table->bigIncrements('id');
             $table->string('no')->unique();
             $table->unsignedBigInteger('penjual_id');
-            $table->string('keterangan');
             $table->bigInteger('volume');
             $table->string('satuan');
             $table->bigInteger('harga');

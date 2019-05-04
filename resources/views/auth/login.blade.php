@@ -16,10 +16,10 @@
                 <form method="POST" action="{{ route('login') }}" class="card">
                     @csrf
                     <div class="card-body p-6">
-                        <div class="card-title">{{ __('Login to your account') }}</div>
+                        <div class="card-title">{{ __('Login') }}</div>
 
                         <div class="form-group">
-                            <label class="form-label">Email address</label>
+                            <label class="form-label">Alamat Email</label>
                             <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" required autofocus>
                             @if ($errors->has('email'))
                                 <div class="invalid-feedback">{{ $errors->first('email') }}</div>
@@ -39,18 +39,18 @@
                         <div class="form-group">
                             <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
-                            <span class="custom-control-label">{{ __('Remember Me') }}</span>
+                            <span class="custom-control-label">{{ __('Tetap Login') }}</span>
                             </label>
                         </div>
 
                         <div class="form-footer">
-                            <button type="submit" class="btn btn-primary btn-block">{{ __('Sign in') }}</button>
+                            <button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button>
                         </div>
                     </div>
                 </form>
 
                 <div class="text-center text-muted">
-                    Don't have account yet? <a href="{{ route('register') }}">Sign up</a>
+                    Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
                 </div>
                 </div>
             </div>
