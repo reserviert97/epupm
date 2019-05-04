@@ -2,7 +2,6 @@
     <div class="container">
         <div class="d-flex">
             <a class="header-brand" href="{{ route('home') }}">
-                {{-- <img src="{{ asset('demo/brand/tabler.svg') }}" class="header-brand-img" alt="tabler logo"> --}}
                 <span class="h1">e-PUPM</span><br>
             </a>
             <div class="d-flex order-lg-2 ml-auto">
@@ -54,14 +53,6 @@
 <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-3 ml-auto">
-                <form class="input-icon my-3 my-lg-0">
-                    <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
-                    <div class="input-icon-addon">
-                        <i class="fe fe-search"></i>
-                    </div>
-                </form>
-            </div>
             <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                     <li class="nav-item">

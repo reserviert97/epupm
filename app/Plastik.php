@@ -13,4 +13,9 @@ class Plastik extends Model
     {
         return $this->belongsTo(Operasional::class);
     }
+
+    public function scopeTotalUang()
+    {
+        return $this->sum('total');
+    }
 }

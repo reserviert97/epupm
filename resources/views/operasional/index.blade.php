@@ -54,7 +54,7 @@
                                 <td>{{ $item->jenis_item }}</td>
                                 
                                 @if ($item->jenis_item == 'Giling')
-                                    <td class="text-right">{{ $item->giling->volume_gkg }}</td>
+                                    <td class="text-right">{{ $item->giling->volume_beras }}</td>
                                     <td class="pl-0">Kg</td>
                                     <td class=""><span class="ml-5">Rp. </span></td>
                                     <td class="text-right">{{ number_format($item->giling->total) }}</td>

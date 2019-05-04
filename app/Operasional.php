@@ -33,4 +33,21 @@ class Operasional extends Model
     {
         return $this->hasOne(BongkarMuat::class);
     }
+
+    public function scopeTotalOperasional()
+    {
+        $data = BongkarMuat::totalUang() +
+                Giling::totalUang() +
+                Plastik::totalUang() +
+                Sortir::totalUang() +
+                Transport::totalUang()        
+        ;
+
+        return $data;
+    }
+
+    public function scopePresentase()
+    {
+        return $this->totalOperasional()  / 60000000 * 100;
+    }
 }
