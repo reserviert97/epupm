@@ -28,7 +28,7 @@ class PenjualController extends Controller
 
     public function store(Request $request)
     {
-        $penjual = Penjual::insert([
+        Penjual::insert([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
         ]);

@@ -120,6 +120,9 @@ class PembelianController extends Controller
         return redirect()->route('beli.index');
     }
 
+    /**
+     * Custom Helper
+     */
 
     public function generateInv($model, $kolom, $kode, $awal)
     {

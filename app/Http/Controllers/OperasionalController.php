@@ -13,11 +13,19 @@ use App\Giling;
 
 class OperasionalController extends Controller
 {
+    // Index
+
     public function index()
     {
         $data = Operasional::orderBy('created_at', 'Desc')->get();
         return view('operasional.index', compact('data'));
     }
+
+
+    /**
+     * Bagian Transport
+     * 
+     */
 
     public function transport()
     {
@@ -84,10 +92,39 @@ class OperasionalController extends Controller
         return redirect()->route('operasional.index');
     }
 
+    /**
+     * Bagian Sortir
+     */
+
     public function sortir()
     {
         $inv = $this->generateInv(Sortir::class, 'no_sortir', 'STR', '4000');
         return view('operasional.sortir.sortir', compact('inv'));
+    }
+
+    public function storeSortir(Request $request)
+    {
+        $date = $this->generateDate($request->created_at);
+
+        $operasional = Operasional::create([
+            'jenis_item' => 'Sortir',
+            'nomor' => $request->no_sortir,
+            'created_at' => $date,
+            'updated_at' => now(),
+        ]);
+
+        Sortir::insert([
+            'harga' => 200 * $request->volume,
+            'no_sortir' => $request->no_sortir,
+            'volume' => $request->volume,
+            'operasional_id' => $operasional->id,
+            'created_at' => $date,
+            'updated_at' => now()
+        ]);
+        
+        session()->flash('success', 'Berhasil menambahkan transaksi Sortir');
+        return redirect()->route('operasional.index');
+        
     }
 
     public function editSortir(Sortir $sortir)
@@ -125,31 +162,11 @@ class OperasionalController extends Controller
         return redirect()->route('operasional.index');
     }
 
-    public function storeSortir(Request $request)
-    {
-        $date = $this->generateDate($request->created_at);
-
-        $operasional = Operasional::create([
-            'jenis_item' => 'Sortir',
-            'nomor' => $request->no_sortir,
-            'created_at' => $date,
-            'updated_at' => now(),
-        ]);
-
-        Sortir::insert([
-            'harga' => 200 * $request->volume,
-            'no_sortir' => $request->no_sortir,
-            'volume' => $request->volume,
-            'operasional_id' => $operasional->id,
-            'created_at' => $date,
-            'updated_at' => now()
-        ]);
-        
-        session()->flash('success', 'Berhasil menambahkan transaksi Sortir');
-        return redirect()->route('operasional.index');
-        
-    }
-
+    /**
+     * Bagian Bongkar Muat
+     * 
+     */
+    
     public function bongkarMuat()
     {
         $inv = $this->generateInv(BongkarMuat::class, 'no_bm', 'STR', '5000');
@@ -214,6 +231,11 @@ class OperasionalController extends Controller
         session()->flash('success', 'Transkasi Bongkar Muat Berhasil dihapus');
         return redirect()->route('operasional.index');
     }
+
+    /**
+     * Bagian Plastik
+     * 
+     */
 
     public function plastik()
     {
@@ -290,6 +312,10 @@ class OperasionalController extends Controller
         return view('operasional.giling.giling', compact('inv'));
     }
 
+    /**
+     * Baigan Giling
+     */
+
     public function storeGiling(Request $request)
     {
         $date = $this->generateDate($request->created_at);
@@ -352,6 +378,10 @@ class OperasionalController extends Controller
         session()->flash('success', 'Data Penggilingan Berhasil dihapus');
         return redirect()->route('operasional.index');
     }
+
+    /**
+     * Custom Helper
+     */
 
     public function generateInv($model, $kolom, $kode, $awal)
     {

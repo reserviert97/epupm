@@ -19,17 +19,10 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                         <a class="dropdown-item" href="#">
-                            <i class="dropdown-icon fe fe-user"></i> Profile
-                        </a>
-                        <a class="dropdown-item" href="#">
                             <i class="dropdown-icon fe fe-settings"></i> Settings
                         </a>
                         <a class="dropdown-item" href="#">
-                            <span class="float-right"><span class="badge badge-primary">6</span></span>
-                            <i class="dropdown-icon fe fe-mail"></i> Inbox
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="dropdown-icon fe fe-send"></i> Message
+                            <i class="dropdown-icon fe fe-send"></i> Laporan
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -56,22 +49,22 @@
             <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                     <li class="nav-item">
-                        <a href="{{ route('home') }}" class="nav-link {{ request()->route()->uri == 'home' ? 'active' : '' }}">Home</a>
+                        <a href="{{ route('home') }}" class="nav-link {{ Nav::isRoute('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('beli.index') }}" class="nav-link {{ Request::segment(1) == 'beli' ? 'active' : '' }}">Pembelian</a>
+                        <a href="{{ route('beli.index') }}" class="nav-link {{ Nav::hasSegment('beli') }}">Pembelian</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('operasional.index') }}" class="nav-link {{ request()->route()->getPrefix() == '/operasional' ? 'active' : '' }}">Operasional</a>
+                        <a href="{{ route('operasional.index') }}" class="nav-link {{ Nav::hasSegment('operasional') }}">Operasional</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('jual.index') }}" class="nav-link {{ request()->route()->getPrefix() == '/kirim' ? 'active' : '' }}">Pengiriman</a>
+                        <a href="{{ route('jual.index') }}" class="nav-link {{ Nav::hasSegment('kirim') }}">Pengiriman</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('penjual.index') }}" class="nav-link {{ request()->route()->getPrefix() == '/penjual' ? 'active' : '' }}">Penjual</a>
+                        <a href="{{ route('penjual.index') }}" class="nav-link {{ Nav::hasSegment('penjual') }}">Penjual</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('toko.index') }}" class="nav-link {{ request()->route()->getPrefix() == '/toko' ? 'active' : '' }}">Toko</a>
+                        <a href="{{ route('toko.index') }}" class="nav-link {{ Nav::hasSegment('toko') }}">Toko</a>
                     </li>
                 </ul>
             </div>

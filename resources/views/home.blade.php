@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard')
+
 @section('content')
 <div class="container">
     <div class="page-header">
@@ -96,7 +98,7 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0">
-                                        Piutang
+                                        Hasil Penjualan
                                     </div>
                                     <span class="small text-muted">Total Pengiriman</span>
                                 </div>

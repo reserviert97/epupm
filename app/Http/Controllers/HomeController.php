@@ -43,6 +43,10 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Custom Helper
+     */
+
     public function warna($value)
     {
         $warna = '';

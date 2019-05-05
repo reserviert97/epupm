@@ -55,9 +55,8 @@ class JualController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pengiriman = Pengiriman::findOrFail($id);
-
         $date = $this->generateDate($request->created_at);
+        $pengiriman = Pengiriman::findOrFail($id);
 
         $pengiriman->update([
             'no_kirim' => $request->no_kirim,
