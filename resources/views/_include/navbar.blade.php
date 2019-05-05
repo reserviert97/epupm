@@ -22,7 +22,7 @@
                             <i class="dropdown-icon fe fe-settings"></i> Settings
                         </a>
                         <a class="dropdown-item" href="#">
-                            <i class="dropdown-icon fe fe-send"></i> Laporan
+                            <i class="dropdown-icon fe fe-clipboard"></i> Laporan
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
